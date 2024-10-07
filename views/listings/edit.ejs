@@ -60,6 +60,8 @@
                 <!-- Categories Selection Form -->
                 <div class="mb-3">
                     <label for="categories" class="form-label">Categories</label>
+                     <!-- Check if listing.categories exists and populate the form -->
+                    <% if (listing.categories && listing.categories.length > 0) { %>
                     <select 
                       name="listing[categories][]" 
                       id="categories" 
@@ -75,6 +77,25 @@
                     <option value="Farms">Farms</option>
                     <option value="Arctic">Arctic</option>
                     </select>
+                    <% } else { %>
+                        <!-- Empty select in case it's a new listing or no categories -->
+                        <select 
+                          name="listing[categories][]"  
+                          id="categories" 
+                          class="form-control" 
+                          multiple
+                        >
+                        <option value="Rooms">Rooms</option>
+                        <option value="Iconic Cities">Iconic Cities</option>
+                        <option value="Mountains">Mountains</option>
+                        <option value="Castles">Castles</option>
+                        <option value="Amazing Pools">Amazing Pools</option>
+                        <option value="Camping">Camping</option>
+                        <option value="Farms">Farms</option>
+                        <option value="Arctic">Arctic</option>
+                    </select>
+                    <% } %>
+
                     <div class="invalid-feedback">Please select at least one category</div>
                 </div>
                 

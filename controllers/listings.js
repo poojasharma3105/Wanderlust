@@ -43,6 +43,10 @@ module.exports.createListing =async (req,res, next) =>{
     const newListing = new Listing(req.body.listing);
     newListing.owner = req.user._id;
     newListing.image = {url, filename};
+    // Handle categories properly as an array (in case none is selected)
+    if (!Array.isArray(req.body.listing.categories)) {
+        req.body.listing.categories = req.body.listing.categories ? [req.body.listing.categories] : [];
+    }
 
     // Set categories (ensure req.body.listing.categories is an array or single category string)
     newListing.categories = Array.isArray(req.body.listing.categories) 
