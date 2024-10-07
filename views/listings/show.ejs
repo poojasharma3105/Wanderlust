@@ -39,7 +39,6 @@
                   <i>No categories available</i>
                 <% } %>
               </p> 
-              
             <p> &#8377; <%= listing.price.toLocaleString("en-IN") %></p>
             <p> <%= listing.country %> </p>
             <p> <%= listing.location %> </p>
@@ -133,7 +132,11 @@
 
     <div class="col-6 offset-3 mb-3">
         <h3>Where you'll be</h3>
-        <div id="map"></div>
+        <% if (listing.geometry && listing.geometry.coordinates) { %>
+            <div id="map"></div>
+          <% } else { %>
+            <p>Location not available</p>
+          <% } %>
     </div>
 </div>
 

@@ -21,7 +21,7 @@ module.exports.showListing = async (req, res) =>{
           populate: {
             path: "author",
           }, 
-       }).populate("owner");
+       }).populate("owner").exec();
     if(!listing){
         req.flash("error", "Listing you requested for does not exist!");
         res.redirect("/listings");
@@ -43,6 +43,11 @@ module.exports.createListing =async (req,res, next) =>{
     const newListing = new Listing(req.body.listing);
     newListing.owner = req.user._id;
     newListing.image = {url, filename};
+
+    // Set categories (ensure req.body.listing.categories is an array or single category string)
+    newListing.categories = Array.isArray(req.body.listing.categories) 
+        ? req.body.listing.categories 
+        : [req.body.listing.categories];
     
     // newListing.geometry = response.body.features[0].geometry;
     if (response.body.features.length > 0) {
@@ -74,6 +79,10 @@ module.exports.renderEditForm = async (req,res) =>{
 
 module.exports.updateListing = async(req, res) =>{
     let {id} = req.params;
+    // Handle categories
+    req.body.listing.categories = Array.isArray(req.body.listing.categories) 
+        ? req.body.listing.categories 
+        : [req.body.listing.categories]; // Ensure it's an array
     let listing = await Listing.findByIdAndUpdate({_id  : id}, { ...req.body.listing });
 
     if(typeof req.file !== "undefined"){
@@ -120,6 +129,7 @@ module.exports.searchListing  = async (req, res) => {
   
       // If categories are selected, filter by them
       if (categories) {
+        const categoriesArray = Array.isArray(categories) ? categories : [categories];
           filterCriteria.categories = { $in: categories }; // Ensures it can filter by multiple categories
       }
   
