@@ -79,10 +79,9 @@ module.exports.renderEditForm = async (req,res) =>{
 
 module.exports.updateListing = async(req, res) =>{
     let {id} = req.params;
-    // Handle categories
-    req.body.listing.categories = Array.isArray(req.body.listing.categories) 
-        ? req.body.listing.categories 
-        : [req.body.listing.categories]; // Ensure it's an array
+    if (!Array.isArray(req.body.listing.categories)) {
+        req.body.listing.categories = req.body.listing.categories ? [req.body.listing.categories] : [];
+    }
     let listing = await Listing.findByIdAndUpdate({_id  : id}, { ...req.body.listing });
 
     if(typeof req.file !== "undefined"){
