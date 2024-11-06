@@ -1,7 +1,8 @@
 # Wanderlust
 
 Wanderlust is a web application designed to help users plan and track their travel experiences. Whether you're planning your next vacation or reminiscing about past trips, Wanderlust makes it easy to organize your adventures.
-Live link to test**: https://wanderlust-dkdz.onrender.com
+
+**Live link to test**: https://wanderlust-dkdz.onrender.com
 
 ## Features
 
