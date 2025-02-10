@@ -5,11 +5,11 @@
     const coordinates = JSON.parse(coordinatesString);
 </script>
 <div class="row mt-3">
-    <div class="col-8 offset-3">
+    <div class="mt-3 col-md-8 offset-md-3 col-12">
         <h3> <b> <%= listing.title %> </b> </h3>
     </div>
 
-    <div class="card col-6 offset-3 show-card listing-card">
+    <div class="card col-md-6 offset-md-3 col-12 show-card listing-card">
         <img 
             src="<%= listing.image.url %>" 
             class="card-img-top show-img" 
@@ -61,7 +61,7 @@
     <% } %>
 
 
-    <div class="col-8 offset-3 mb-3">
+    <div class="col-md-8 offset-md-3 col-12 mb-3">
         
         <% if(currUser) { %>
             <hr/>
@@ -115,8 +115,8 @@
         <div class="row">
             <p><b>All Reviews</b></p>
             <% for(review of listing.reviews) { %>
-                <div class="card col-5 ms-3 mb-3">
-                    <div class="card-body">
+                <div class="card review-card col-md-5 ms-3 mb-3">
+                    <div class="review-card card-body">
                         <h5 class="card-title">@<%= review.author.username %></h5>
                         <p class="starability-result card-text" data-rating="<%= review.rating %>"></p>
                         <p class="card-text"> <%= review.comment %></p>
@@ -130,7 +130,7 @@
         <% } %>
     </div>
 
-    <div class="col-6 offset-3 mb-3">
+    <div class="col-md-6 offset-md-3 col-12 mb-3">
         <h3>Where you'll be</h3>
         <% if (listing.geometry && listing.geometry.coordinates) { %>
             <div id="map"></div>

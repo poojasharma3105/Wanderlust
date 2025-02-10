@@ -2,6 +2,20 @@
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+
+      <div class="navbar-nav">
+        <a class="nav-link d-none d-md-block" href="/listings">Explore</a>
+      </div>
+      <div class="navbar-nav ms-auto d-xl-none d-lg-none d-md-none">
+        <form class="d-flex" role="search" action="/listings/search" method="GET" style="max-width: 250px; width: 90%;">
+          <input class="form-control me-2 search-inp" type="search" name="q" placeholder="Search" style="width: 100%; max-width: 180px; font-size: 14px; padding: 5px 10px;">
+          <button class="btn btn-search " type="submit" style="padding: 5px 10px; font-size: 14px;">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+      </div>
+      
+
       <button 
         class="navbar-toggler" 
         type="button" 
@@ -11,11 +25,8 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link" href="/listings">Explore</a>
-        </div>
 
-        <div class="navbar-nav ms-auto">
+        <div class="navbar-nav ms-auto d-none d-md-block">
           <form class="d-flex" role="search" action="/listings/search" method="GET">
             <input class="form-control me-2 search-inp" type="search" name= "q" placeholder="Search destinations" >
             <button class="btn btn-search" type="submit">
